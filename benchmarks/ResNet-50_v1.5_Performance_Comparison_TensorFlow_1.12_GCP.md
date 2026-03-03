@@ -156,7 +156,7 @@ sudo mkdir -p /data && sudo mount /dev/nvme0n1 /data
 ```
 ### Copies data from your GCS bucket created earlier to the local drive.
 sudo mkdir -p /data/imagenet && sudo chmod -R 777 /data
-gsutil -m cp -r gs://<your bucket with imagenet>/imagenet/* /data/imagenet/
+gcloud storage cp --recursive gs://<your bucket with imagenet>/imagenet/* /data/imagenet/
 ```
 
 4. Install TensorFlow 1.12 compiled with CUDA 10.0, cuDNN 7.3, and AVX2.

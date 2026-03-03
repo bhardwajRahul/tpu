@@ -148,7 +148,7 @@ variable you set in the last step will be automatically substituted so you can
 copy-paste the following commands unmodified):
 
 ```bash
-gsutil cp -r ./data gs://$GCS_BUCKET_NAME/mnist/data
+gcloud storage cp --recursive ./data gs://$GCS_BUCKET_NAME/mnist/data
 ```
 
 ### Train your model ###

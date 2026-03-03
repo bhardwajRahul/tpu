@@ -66,7 +66,7 @@ function check_tpu_tf_versions() {
 }
 
 function check_model_exists() {
-  num_versions=$(expr $(gsutil ls ${MODEL_BASE_PATH?} | wc | awk '{print $1}')-1)
+  num_versions=$(expr $(gcloud storage ls ${MODEL_BASE_PATH?} | wc | awk '{print $1}')-1)
   if [[ $num_versions < 1 ]]; then
     err "The MODEL_BASE_PATH provided is not valid."
   fi

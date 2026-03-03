@@ -54,7 +54,7 @@ export USER=weicheng  # Your user name.
 export STORAGE_BUCKET=gs://${USER}-data
 
 # Create storage bucket.
-gsutil mb $STORAGE_BUCKET
+gcloud storage buckets create $STORAGE_BUCKET
 
 # Download COCO data.
 mkdir ~/data
@@ -66,16 +66,16 @@ bash download_and_preprocess_coco.sh ~/data/coco
 # Create coco directory under the bucket.
 mkdir coco
 touch coco/empty.txt
-gsutil cp -r coco $STORAGE_BUCKET
+gcloud storage cp --recursive coco $STORAGE_BUCKET
 
 # Move data over to bucket.
-gsutil -m cp data/coco/*.tfrecord gs://${USER}-data/coco
-gsutil -m cp data/coco/raw-data/annotations/*.json gs://${USER}-data/coco
+gcloud storage cp data/coco/*.tfrecord gs://${USER}-data/coco
+gcloud storage cp data/coco/raw-data/annotations/*.json gs://${USER}-data/coco
 
 # Create shapemask directory under the bucket.
 mkdir shapemask_exp
 touch shapemask_exp/empty.txt
-gsutil cp -r shapemask_exp gs://${USER}-data/
+gcloud storage cp --recursive shapemask_exp gs://${USER}-data/
 
 # Back to home directory.
 cd ~
