@@ -52,7 +52,7 @@ You can create a bucket using the
 the command line with gsutil:
 
 ```
-gsutil mb ${GCS_BUCKET}
+gcloud storage buckets create ${GCS_BUCKET}
 ```
 
 ## Preparing the COCO dataset
@@ -86,8 +86,8 @@ training.  We can use `gsutil` to copy the files over.  We also want to save the
 annotation files: we use these to validate our model performance:
 
 ```
-gsutil -m cp ./data/dir/coco/*.tfrecord ${GCS_BUCKET}/coco
-gsutil cp ./data/dir/coco/raw-data/annotations/*.json ${GCS_BUCKET}/coco
+gcloud storage cp ./data/dir/coco/*.tfrecord ${GCS_BUCKET}/coco
+gcloud storage cp ./data/dir/coco/raw-data/annotations/*.json ${GCS_BUCKET}/coco
 ```
 
 ## Installing extra packages
@@ -221,7 +221,7 @@ test that we can read our model directory and validation files.
 # export GCS_BUCKET as above
 
 # Copy over the annotation file we created during preprocessing
-gsutil cp ${GCS_BUCKET}/coco/instances_val2017.json .
+gcloud storage cp ${GCS_BUCKET}/coco/instances_val2017.json .
 
 python tpu/models/official/retinanet/retinanet_main.py  \
  --use_tpu=False \
